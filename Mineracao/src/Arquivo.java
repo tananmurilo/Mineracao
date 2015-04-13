@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-
+//foi
 public class Arquivo {
     //lista para armazenar as strings
     private LinkedList<String> linha;
