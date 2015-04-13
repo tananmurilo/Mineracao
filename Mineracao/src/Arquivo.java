@@ -64,6 +64,12 @@ public class Arquivo {
       }
       
     }
+    /**
+     * Método para salvar em arquivo de texto
+     * @param texto String contendo o texto a ser salvo
+     * @param path Local da pasta onde o arquivo vai ser salvo
+     */
+    
     
     public void writer(String texto, String path){
        try {
@@ -72,7 +78,6 @@ public class Arquivo {
             FileWriter arquivo = new FileWriter(text);
             PrintWriter gravar = new PrintWriter(arquivo);
             gravar.printf(texto);
-            //gravar.printf("%n asdasda");
             
             arquivo.close();
        } catch (IOException e) {
