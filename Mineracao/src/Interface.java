@@ -232,7 +232,9 @@ public class Interface extends javax.swing.JFrame {
 
     private void bExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExecutarActionPerformed
         LinkedList<String> linha =  new LinkedList<>();
-        linha = arq.getLinhas(); //pega as linhas do arquivo lido
+        linha = arq.getLinhas(); //pega as linhas do arquivo lid
+        Algoritmo alg = new Algoritmo();
+        alg.lerLinhas(linha);
         String text="";
         for (String linha1 : linha) {
             if(linha1!=null){// a ultima posição na lista é null 
