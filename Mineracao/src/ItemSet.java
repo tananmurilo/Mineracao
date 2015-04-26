@@ -11,21 +11,28 @@ import java.util.LinkedList;
  *
  * @author murilo
  */
-public class Linha {
-    LinkedList<String> lista =  new LinkedList<>();
+public class ItemSet {
+    public ItemSet(){
+        itens = new LinkedList<>();
+    }
+    
+    private LinkedList<String> itens;
     
     public void add(String nome){
-        lista.add(nome);
+        itens.add( nome);
     }
    
     public int size(){
-        return lista.size();
-    }
-    public String get(int pos){
-        return lista.get(pos);
+        return itens.size();
     }
     
     public LinkedList<String> getLista(){
-        return this.lista;
+        return this.itens;
     }
+    public String getElemento(int pos){
+        return itens.get(pos);
+    }
+
+    
 }
+ 
