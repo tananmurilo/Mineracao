@@ -15,7 +15,8 @@ public class ItemSet {
     public ItemSet(){
         itens = new LinkedList<>();
     }
-    
+    private int quantidade;
+    private double suporte;
     private LinkedList<String> itens;
     
     public void add(String nome){
@@ -31,6 +32,22 @@ public class ItemSet {
     }
     public String getElemento(int pos){
         return itens.get(pos);
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public double getSuporte() {
+        return suporte;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public void setSuporte(double suporte) {
+        this.suporte = suporte;
     }
 
     

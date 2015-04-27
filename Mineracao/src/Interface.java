@@ -244,7 +244,7 @@ public class Interface extends javax.swing.JFrame {
         textoFinal ="Apenas um teste de leitura de arquivo, isso vai ser substituido pelo resultado do algoritmo: \n \nConteúdo do arquivo:\n"+text; 
         this.painelEntrada.setText(textoFinal); //add o texto ao painel
         
-        alg.l1(0.2);
+        alg.ln(0.2);
     }//GEN-LAST:event_bExecutarActionPerformed
 
     /**
