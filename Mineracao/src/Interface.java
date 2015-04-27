@@ -2,6 +2,7 @@
 import java.io.File;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
@@ -21,6 +22,9 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         initComponents();
+        SpinnerNumberModel model = new SpinnerNumberModel(1, 1,100,1);
+        cxSup.setModel(model);
+             
     }
     
     private String path = "";
@@ -43,9 +47,10 @@ public class Interface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Status_arquivo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         bExecutar = new javax.swing.JButton();
+        cxSup = new javax.swing.JSpinner();
+        aviso = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -58,9 +63,7 @@ public class Interface extends javax.swing.JFrame {
 
         jLabel1.setText("Resultados:");
 
-        jLabel3.setText("Campos de opções:");
-
-        jLabel4.setText("Op 1");
+        jLabel3.setText("Suporte Minimo %");
 
         jLabel5.setText("Op2");
 
@@ -77,20 +80,20 @@ public class Interface extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Status_arquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel4)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bExecutar))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(Status_arquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(cxSup, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(91, 91, 91)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bExecutar))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE))
+                    .addComponent(aviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,10 +104,12 @@ public class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(bExecutar))
-                .addGap(18, 18, 18)
+                    .addComponent(bExecutar)
+                    .addComponent(cxSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,7 +155,7 @@ public class Interface extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,6 +192,7 @@ public class Interface extends javax.swing.JFrame {
             
             //chamada do método de leitura de arquivo
             //Arquivo arq = new Arquivo();
+            
             arq.read(path);
         }
         
@@ -241,10 +247,20 @@ public class Interface extends javax.swing.JFrame {
                 text= text+linha1+"\n";
             }    
         }
-        textoFinal ="Apenas um teste de leitura de arquivo, isso vai ser substituido pelo resultado do algoritmo: \n \nConteúdo do arquivo:\n"+text; 
-        this.painelEntrada.setText(textoFinal); //add o texto ao painel
+        //textoFinal ="Apenas um teste de leitura de arquivo, isso vai ser substituido pelo resultado do algoritmo: \n \nConteúdo do arquivo:\n"+text; 
+        //this.painelEntrada.setText(textoFinal); //add o texto ao painel
+        int sup= (int)cxSup.getValue();
+        double cx;
+        cx = (double)sup/100;
+         
+        if(cx>0.01&&cx<=1){
+            alg.ln(cx);
+            this.painelEntrada.setText(alg.textoFinal);
+            //aviso.setText(Double.toString(cx));
+        }else{
+            aviso.setText("Coloque valores entre 1-100");
+        }
         
-        alg.ln(0.2);
     }//GEN-LAST:event_bExecutarActionPerformed
 
     /**
@@ -284,10 +300,11 @@ public class Interface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Status_arquivo;
+    private javax.swing.JLabel aviso;
     private javax.swing.JButton bExecutar;
+    private javax.swing.JSpinner cxSup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

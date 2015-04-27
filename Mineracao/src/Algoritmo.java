@@ -18,6 +18,7 @@ public class Algoritmo {
     int qntAtributos;
     int numTrasacoes;
     LinkedList<Linha> dadosLinha;
+    public String textoFinal;
     
     /**
      * Metodo para pegar as linhas do arquivo e futuramente colocar os dados nas nossas estruturaas de dados que vamos usar
@@ -111,7 +112,7 @@ public class Algoritmo {
         }
         
         //calcular suporte
-        System.out.println("********Calculando suporte******");
+        //System.out.println("********Calculando suporte******");
         LinkedList<ItemSet> itens2 = new LinkedList<> ();
        
         double sup;
@@ -152,35 +153,113 @@ public class Algoritmo {
         return itens2;
     }
     
-    //gerar todos as combinações e todos os li
-    public void ln(double supMin){
-        LinkedList<ItemSet> ListaItens = new LinkedList<> ();
+    public ItemSet verItems(LinkedList<ItemSet> ListaItens){
         ItemSet itenParaCombinacao = new ItemSet();
-        ListaItens = l1(supMin);
-        
-        //separar valores para gerar combinações
         for(int i=0; i<ListaItens.size(); i++){
             for(int j=0; j<ListaItens.get(i).size(); j++){
+                //textoFinal = textoFinal+ListaItens.get(i).getElemento(j)+" Quantidade: "+ListaItens.get(i).getQuantidade()+" suporte:"+ListaItens.get(i).getSuporte()+"\n";
                 if(itenParaCombinacao.size()==0){
                     itenParaCombinacao.add(ListaItens.get(i).getElemento(j));
+                    
                 }else if(!itenParaCombinacao.getLista().contains(ListaItens.get(i).getElemento(j))){
                     itenParaCombinacao.add(ListaItens.get(i).getElemento(j));
                 }
             }
             
         }
+        return itenParaCombinacao;
+    }
+    
+    //gerar todos as combinações e todos os li
+    public void ln(double supMin){
+        LinkedList<ItemSet> ListaItens = new LinkedList<> ();
+        ItemSet itenParaCombinacao = new ItemSet();
+        ListaItens = l1(supMin);
+        int combinacaoAtual=2;
+        
+        textoFinal = "L1:\n";
+        
+            //separar valores para gerar combinações
+        itenParaCombinacao = verItems(ListaItens);
+
         LinkedList<ItemSet> retorno = new LinkedList<>();
-        retorno = combinar(itenParaCombinacao,2);
-        
-        System.out.println("Imprimindo lista final");
-         for(int i=0; i<retorno.size(); i++){
-            System.out.println("Combinação "+i);
-            for(int j=0; j<retorno.get(i).size(); j++){
-                System.out.println(retorno.get(i).getElemento(j));
+         //trabalhar com as combinações recebidas
+            retorno = combinar(itenParaCombinacao,combinacaoAtual);
+
+        //gerar tudo
+        do{
+           
+
+            textoFinal = textoFinal+"Combinações para:"+combinacaoAtual+"\n";
+            //System.out.println("Imprimindo lista final");
+             for(int i=0; i<retorno.size(); i++){
+                System.out.println("Combinação "+i);
+                textoFinal = textoFinal+"{";
+                for(int j=0; j<retorno.get(i).size(); j++){
+                    System.out.println(retorno.get(i).getElemento(j));
+                    textoFinal = textoFinal+" "+retorno.get(i).getElemento(j)+" ";
+                }
+                textoFinal = textoFinal+"}\n";
             }
-            
-        }
-        
+
+             //calcular sup 
+              LinkedList<ItemSet> itens2 = new LinkedList<> ();
+
+                double sup;
+                int cont2=0;
+                for(int z=0; z<retorno.size(); z++){
+                    ItemSet var = new ItemSet();
+                    sup=0;
+
+                    int contQnt=0;
+                    //varer os dados (bd)
+                    for(int i=0; i<dadosLinha.size(); i++){
+                        int contL=0;//conquantas 
+                        for(int p = 0; p<retorno.get(z).size();p++){
+                            if(dadosLinha.get(i).getLista().contains(retorno.get(z).getElemento(p))){
+                                contL++;//contar quantas vezes apareceu o elemento da linha de z na linha de i
+                                if(contL==combinacaoAtual){
+                                    contQnt++;//contar quantas vezes apareceu a combinaçõ de itens
+                                }
+                            }  
+                        }
+
+
+                    }
+                    sup = (double)contQnt/numTrasacoes;
+                   // System.out.println("Elemento: "+itens.getElemento(z)+" Quantidade:"+cont+" Suporte:"+sup);
+                    if(sup>=supMin){
+                        var = retorno.get(z);
+                        itens2.add(var);
+                        itens2.getLast().setQuantidade(contQnt);
+                        itens2.getLast().setSuporte(sup);
+
+                    }
+                }
+
+                textoFinal = textoFinal+"Combinações acima do suporte para:"+combinacaoAtual+"\n";
+            //System.out.println("Imprimindo lista final");
+                //teste
+             for(int i=0; i<itens2.size(); i++){
+                if(itens2.get(i).getSuporte()>supMin){
+                    System.out.println("Combinação "+i);
+                    textoFinal = textoFinal+"{";
+                    for(int j=0; j<itens2.get(i).size(); j++){
+                        System.out.println(itens2.get(i).getElemento(j));
+
+                        textoFinal = textoFinal+" "+itens2.get(i).getElemento(j);
+                    }
+                    textoFinal = textoFinal+"}";
+                    textoFinal = textoFinal+" "+" Suporte: "+itens2.get(i).getSuporte()+" Quantidade: "+itens2.get(i).getQuantidade()+"\n";
+
+                }
+            }
+               
+            //separar valores para gerar combinações
+             itenParaCombinacao = verItems((LinkedList<ItemSet>)itens2.clone());
+             combinacaoAtual++;
+             retorno = combinar(itenParaCombinacao,combinacaoAtual);
+        }while(retorno!=null);
     }
     
     public LinkedList<ItemSet>  combinar(ItemSet l, int numComb){
@@ -188,69 +267,89 @@ public class Algoritmo {
         LinkedList<ItemSet> itens = new LinkedList<> ();
         LinkedList<ItemSet> temp = new LinkedList<> ();
         ItemSet it = new ItemSet();
-        
+        int ponteiro2 = 0;
         //quantidade de itens menor que o tipo de combinação: ex 2 itens para uma combinação de 3.
         if(l.size()<numComb){
             
-            return itens;//retorna lista vazia
+            return null;//retorna vazio
         }else{
            //combinações
             int cont = numComb;
             System.out.println("Fazendo combinações");
+            //temp = new LinkedList<> ();
             while(cont>0){
                 System.out.println("Cont :"+cont);
-                temp = new LinkedList<> ();
+                
                 if(itens.isEmpty()){
-                    System.out.println("lista vazia colocando itens");
+                    //System.out.println("lista vazia colocando itens");
                     for(int i=0; i<l.size(); i++){
                         it = new ItemSet();
-                        System.out.println(l.getElemento(i));
+                       // System.out.println(l.getElemento(i));
                         it.add(l.getElemento(i));
                         itens.add(it);
                     } 
                     //teste na adição na lista funcionou
                    
                 }else{
-                    for(int i=0; i<itens.size(); i++){
-                       for(int j=i+1; j<l.size(); j++){
-                           if((j>i)&&(!temp.isEmpty())){
-                               
+                    for(int j=ponteiro2; j<l.size(); j++){
+                        for(int i=0; i<itens.size(); i++){
+                       
+                           System.out.println("Lendo posIntem: "+i+" L pos: "+j);
+                           if(!temp.isEmpty()){
+                              // itens.get(i).getLista().add(null);
                                it= new ItemSet() ;
-                               it=itens.get(i);
+                               it.itens=(LinkedList<String>)itens.get(i).getLista().clone();
                                //teste
                               
                                //add elemento no final da lista 
                                it.getLista().add(l.getElemento(j));
                               
-                               if(!temp.contains(it)){
+                               //if(!temp.contains(it)){
                                    temp.add(it);
-                                   System.out.println("temp não vazio");
-                                   System.out.println("add objeto no temp");
-                                    for(int h=0; h<temp.size(); h++){
+                                   //System.out.println("temp não vazio");
+                                   //System.out.println("add objeto no temp");
+                                    
+                               //}
+                               /*
+                               System.out.println("valores armazenados no temp");
+                               for(int h=0; h<temp.size(); h++){
                                         for(int c=0; c<temp.get(h).size(); c++){
                                             System.out.println("linha:"+h+"valor"+c+" : "+temp.get(h).getElemento(c));
                                         }
                                         
                                     }
-                               }
-                           }else if((j>i)&&(temp.isEmpty())){
+                                */       
+                           }else if(temp.isEmpty()){
                                System.out.println("temp vazio");
                                it = new ItemSet();
-                               it=itens.get(i);
+                               
+                               it.itens=(LinkedList<String>)itens.get(i).getLista().clone();
                                it.getLista().add(l.getElemento(j));
                                temp.add(it);
                                System.out.println("add objeto no temp");
                                
-                               for(int h=0; h<temp.get(0).size(); h++){
-                                   System.out.println("valor:"+temp.get(0).getElemento(h));
-                               }
                            }
                            
                        }
                     }
-                    itens = temp;//substituir a lista de itens por uma nova
+                    //System.out.println("tamanho da lista itens antes:"+itens.size());
+                    // System.out.println("valores armazenados no temp");
+                     /*
+                               for(int h=0; h<temp.size(); h++){
+                                        for(int c=0; c<temp.get(h).size(); c++){
+                                            System.out.println("linha: "+h+" coluna"+c+" : "+temp.get(h).getElemento(c));
+                                        }
+                                        
+                                    }
+                             */
+                                  
+                    itens = new LinkedList<> ();
+                    itens = (LinkedList<ItemSet>)temp.clone();//substituir a lista de itens por uma nova
+                    temp.clear();
+                   // System.out.println("tamanho da lista itens depois da rodada"+itens.size());
                 }
                 cont--;
+                ponteiro2++;
             }
               
           

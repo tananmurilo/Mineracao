@@ -17,7 +17,8 @@ public class ItemSet {
     }
     private int quantidade;
     private double suporte;
-    private LinkedList<String> itens;
+    public LinkedList<String> itens;
+    
     
     public void add(String nome){
         itens.add( nome);
