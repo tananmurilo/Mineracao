@@ -56,7 +56,7 @@ public class Algoritmo {
                     
                     for(String p:temp){
                         String d = Integer.toString(cont);
-                        c.add("C:"+d+":"+p);
+                        c.add("C:"+d+":"+p);//identificar a coluna q pertence esse dado.
                         cont++;
                     }
                     dadosLinha.add(c);
@@ -238,9 +238,9 @@ public class Algoritmo {
                         }
                     }
 
-                    textoFinal = textoFinal+"Combinações acima do suporte para:"+combinacaoAtual+"\n";
+                    textoFinal = textoFinal+"\nRegra para as combinações de "+combinacaoAtual+" elementos, com suporte acima do minimo para: \n\n";
                 //System.out.println("Imprimindo lista final");
-                    //teste
+                    
                  for(int i=0; i<itens2.size(); i++){
                     if(itens2.get(i).getSuporte()>supMin){
                         
@@ -251,8 +251,16 @@ public class Algoritmo {
                 //separar valores para gerar combinações
                  itenParaCombinacao = verItems((LinkedList<ItemSet>)itens2.clone());
                  combinacaoAtual++;
+                 retorno.clear();
                  retorno = combinar(itenParaCombinacao,combinacaoAtual);
+                 System.out.println("itens para combinaçõa: "+ itenParaCombinacao.size());
                  System.out.println("preso no while");
+                 if(retorno!=null){
+                    System.out.println("tamanho do retorno "+retorno.size()); 
+                 }else{
+                      System.out.println("retorno nulo"); 
+                 }
+                 
             }while(retorno!=null);
        } else{//if
              textoFinal="não há nada com suporte acima de: "+supMin;
@@ -278,7 +286,7 @@ public class Algoritmo {
                     String n1="";
                     for(int k=0; k<atributos.size(); k++){
                         if(valor[1].equals(Integer.toString(k))){
-                            System.out.println("transformando...");
+                            //System.out.println("transformando...");
                             n1=atributos.get(k);
                         }
                     }
@@ -287,8 +295,12 @@ public class Algoritmo {
                     String n2="";
                     for(int k=0; k<atributos.size(); k++){
                         if(valor2[1].equals(Integer.toString(k))){
-                            System.out.println("transformando...");
+                            //System.out.println("transformando...");
                             n2=atributos.get(k);
+                        }
+                        if(valor[1].equals(Integer.toString(k))){
+                            //System.out.println("transformando...");
+                            n1=atributos.get(k);
                         }
                     }
                     //regra'
@@ -296,16 +308,125 @@ public class Algoritmo {
                     textoFinal = textoFinal+"SE "+n1+"("+valor[2]+") ENTÃO "+n2+"("+valor2[2]+")"+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";
                 }   
             }else if(itens2.size()>2){ 
-                    //System.out.println("Combinação "+i);
-               textoFinal = textoFinal+"{";
-               for(int j=0; j<itens2.size(); j++){
+                int cont = 0;
+                int cont2 = 0;
+                boolean contem=false;
+                
+                //verificar se tem elementos repetidos
+                for(int k=0; k<itens2.size(); k++){
+                    String elemento = itens2.getElemento(k);
+                    String valor[];
+                    valor=elemento.split(":");
+                    
+                    
+                    for(int y=0; y<itens2.size(); y++){
+                        String valor2[];
+                        valor2=itens2.getElemento(y).split(":");
+                         if(itens2.getElemento(y).equals(itens2.getElemento(k))){
+                            cont++; 
+                        }
+                         
+                         if(valor[1].equals(valor2[1])){
+                             cont2++;
+                         }
+                    }
+                  
+                }
+                 if(cont==1){
+                      contem = true;
+                 }
+                 contem = true;
+                if(contem){
+                    
+                    //pegar valores originais
+                    String nomesOriginal[];
+                    String valores[] =new String[itens2.size()];
+                    nomesOriginal = new String[itens2.size()];
+                    for(int i=0; i<itens2.size(); i++){
+                         String valor2[];
+                         valor2=itens2.getElemento(i).split(":");
+                         valores[i]=valor2[2];
+                         
+                         System.out.println("nome original"+nomesOriginal[i]);
+                         for(int k=0; k<atributos.size(); k++){//pegar o nome original na lista de atributos
+                            if(valor2[1].equals(Integer.toString(k))){
+                                //System.out.println("transformando...");
+                                nomesOriginal[i]=atributos.get(k);
+                            }
+                         }   
+                          //System.out.println("nome original"+nomesOriginal[i]);
+                    }
+                    ItemSet temp = new ItemSet();
+                    
+                    //gerar as regras
+                    for(int z=0; z<itens2.size(); z++){
+                        temp = new ItemSet();
+                        temp.add(itens2.getElemento(z));
+                        double conf = (double)itens2.getQuantidade()/contarElementos(temp);
+                        String v[]=new String[itens2.size()-1];
+                        int x=0;
+                        for(int i=0; i<itens2.size(); i++){
+                            if(i!=z){
+                                v[x]=itens2.getElemento(i);
+                                x++;
+                            }
+                        }
+                        //regra
+                       textoFinal = textoFinal+"SE "+nomesOriginal[z]+"("+valores[z]+") ENTÃO ";
+                       //gerar seguda parte da regra
+                       for(int i= 0; i<itens2.size(); i++){
+                           if(i!=z){
+                               if(i<itens2.size()-1){
+                                  textoFinal=textoFinal+nomesOriginal[i]+"("+valores[i]+") AND "; 
+                               }else{
+                                   textoFinal=textoFinal+nomesOriginal[i]+"("+valores[i]+")"; 
+                               }
+                               
+                           }
+                          
+                       }
+                       textoFinal=textoFinal+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";
+                       temp = new ItemSet();
+                       for(int i=0; i<itens2.size(); i++){
+                            if(i!=z){
+                                temp.add(itens2.getElemento(i));
+                            }
+                        }
+                       conf = (double)itens2.getQuantidade()/contarElementos(temp);
+                       textoFinal = textoFinal+"SE ";
+                        for(int i= 0; i<itens2.size(); i++){
+                           if(i!=z){
+                               if(i<itens2.size()-1){
+                                  textoFinal = textoFinal+nomesOriginal[i]+"("+valores[i]+") AND "; 
+                               }else{
+                                   textoFinal=textoFinal+nomesOriginal[i]+"("+valores[i]+")"; 
+                               }
+                               
+                           }
+                          
+                       }
+                        textoFinal = textoFinal+" ENTÃO "+nomesOriginal[z]+"("+valores[z]+")"+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";;
+                       
+                        
+                    }
+                    /*
+                    se ele(0) entao bc
+                        
+                    */
+                    /*    //System.out.println("Combinação "+i);
+                    
+                      textoFinal = textoFinal+"{";
+                      for(int j=0; j<itens2.size(); j++){
 
 
-                   textoFinal = textoFinal+" "+itens2.getElemento(j);
-               }
-               textoFinal = textoFinal+"}";
-               textoFinal = textoFinal+" "+" Suporte: "+itens2.getSuporte()+" Quantidade: "+itens2.getQuantidade()+"\n";
-
+                          textoFinal = textoFinal+" "+itens2.getElemento(j);
+                      }
+                      textoFinal = textoFinal+"}";
+                      textoFinal = textoFinal+" "+" Suporte: "+itens2.getSuporte()+" Quantidade: "+itens2.getQuantidade()+"\n";
+                    */
+                }
+                
+               
             }
                     
           
@@ -345,7 +466,7 @@ public class Algoritmo {
         ItemSet it = new ItemSet();
         int ponteiro2 = 0;
         //quantidade de itens menor que o tipo de combinação: ex 2 itens para uma combinação de 3.
-        if(l.size()<numComb){
+        if(l.size()<=numComb){
             
             return null;//retorna vazio
         }else{
@@ -372,29 +493,31 @@ public class Algoritmo {
                        
                           // System.out.println("Lendo posIntem: "+i+" L pos: "+j);
                            if(!temp.isEmpty()){
-                              // itens.get(i).getLista().add(null);
-                               it= new ItemSet() ;
-                               it.itens=(LinkedList<String>)itens.get(i).getLista().clone();
-                               //teste
-                              
-                               //add elemento no final da lista 
-                               it.getLista().add(l.getElemento(j));
-                              
-                               //if(!temp.contains(it)){
-                                   temp.add(it);
-                                   //System.out.println("temp não vazio");
-                                   //System.out.println("add objeto no temp");
-                                    
-                               //}
-                               /*
-                               System.out.println("valores armazenados no temp");
-                               for(int h=0; h<temp.size(); h++){
-                                        for(int c=0; c<temp.get(h).size(); c++){
-                                            System.out.println("linha:"+h+"valor"+c+" : "+temp.get(h).getElemento(c));
-                                        }
-                                        
-                                    }
-                                */       
+                               if(!itens.get(i).getLista().contains(l.getElemento(j))){//evitar combinações do tipo AA ABA AAb
+                                    // itens.get(i).getLista().add(null);
+                                     it= new ItemSet() ;
+                                     it.itens=(LinkedList<String>)itens.get(i).getLista().clone();
+                                     //teste
+
+                                     //add elemento no final da lista 
+                                     it.getLista().add(l.getElemento(j));
+
+                                     //if(!temp.contains(it)){
+                                         temp.add(it);
+                                         //System.out.println("temp não vazio");
+                                         //System.out.println("add objeto no temp");
+
+                                     //}
+                                     /*
+                                     System.out.println("valores armazenados no temp");
+                                     for(int h=0; h<temp.size(); h++){
+                                              for(int c=0; c<temp.get(h).size(); c++){
+                                                  System.out.println("linha:"+h+"valor"+c+" : "+temp.get(h).getElemento(c));
+                                              }
+
+                                          }
+                                      */  
+                               }           
                            }else if(temp.isEmpty()){
                                //System.out.println("temp vazio");
                                it = new ItemSet();
