@@ -22,7 +22,7 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         initComponents();
-        SpinnerNumberModel model = new SpinnerNumberModel(1, 1,100,1);
+        SpinnerNumberModel model = new SpinnerNumberModel(50, 1,100,1);
         cxSup.setModel(model);
              
     }
