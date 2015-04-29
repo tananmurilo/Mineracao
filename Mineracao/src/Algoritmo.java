@@ -1,4 +1,6 @@
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.LinkedList;
 
 /*
@@ -19,6 +21,7 @@ public class Algoritmo {
     int numTrasacoes;
     LinkedList<Linha> dadosLinha;
     public String textoFinal="";
+    DecimalFormat df = new DecimalFormat("0.##");//colocar 2 casa decimais nos valores de sup e conf ex 0.8767765 > 0.87
     
     /**
      * Metodo para pegar as linhas do arquivo e futuramente colocar os dados nas nossas estruturaas de dados que vamos usar
@@ -91,7 +94,11 @@ public class Algoritmo {
      */
     public LinkedList<ItemSet>  l1(double suporteMin){
        ItemSet itens = new ItemSet();
+       //System.out.println("teste formatar numero");
         
+      //String dx = df.format(0.54213123);
+        // System.out.println(dx);
+        //System.out.println(NumberFormat.getPercentInstance().format(0.603534534));
         for(int i=0; i<dadosLinha.size(); i++){
             //System.out.println(" ");
             //System.out.println("Linha: "+i);
@@ -304,8 +311,9 @@ public class Algoritmo {
                         }
                     }
                     //regra'
-                    
-                    textoFinal = textoFinal+"SE "+n1+"("+valor[2]+") ENTÃO "+n2+"("+valor2[2]+")"+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";
+                    String ds = df.format(itens2.getSuporte());
+                    String dc = df.format(conf);
+                    textoFinal = textoFinal+"SE "+n1+"("+valor[2]+") ENTÃO "+n2+"("+valor2[2]+")"+" Sup:"+ds+" Conf:"+dc+"\n";
                 }   
             }else if(itens2.size()>2){ 
                 int cont = 0;
@@ -385,7 +393,9 @@ public class Algoritmo {
                            }
                           
                        }
-                       textoFinal=textoFinal+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";
+                       String ds = df.format(itens2.getSuporte());
+                         String dc = df.format(conf);
+                       textoFinal=textoFinal+" Sup:"+ds+" Conf:"+dc+"\n";
                        temp = new ItemSet();
                        for(int i=0; i<itens2.size(); i++){
                             if(i!=z){
@@ -395,6 +405,7 @@ public class Algoritmo {
                        conf = (double)itens2.getQuantidade()/contarElementos(temp);
                        textoFinal = textoFinal+"SE ";
                         for(int i= 0; i<itens2.size(); i++){
+                           
                            if(i!=z){
                                if(i<itens2.size()-1){
                                   textoFinal = textoFinal+nomesOriginal[i]+"("+valores[i]+") AND "; 
@@ -405,7 +416,9 @@ public class Algoritmo {
                            }
                           
                        }
-                        textoFinal = textoFinal+" ENTÃO "+nomesOriginal[z]+"("+valores[z]+")"+" Sup:"+itens2.getSuporte()+" Conf:"+conf+"\n";;
+                        ds = df.format(itens2.getSuporte());
+                        dc = df.format(conf);
+                        textoFinal = textoFinal+" ENTÃO "+nomesOriginal[z]+"("+valores[z]+")"+" Sup:"+ds+" Conf:"+dc+"\n";;
                        
                         
                     }
