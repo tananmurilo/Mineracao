@@ -78,15 +78,8 @@
                   <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="cxSup" min="-2" pref="46" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="461" max="32767" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="555" max="32767" attributes="0"/>
                           <Component id="bExecutar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
@@ -103,11 +96,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Status_arquivo" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bExecutar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cxSup" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="bExecutar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="aviso" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -141,11 +130,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Status_arquivo">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Suporte Minimo %"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="bExecutar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Executar algoritmo"/>
@@ -153,8 +137,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bExecutarActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="cxSup">
         </Component>
         <Component class="javax.swing.JLabel" name="aviso">
         </Component>
