@@ -28,7 +28,9 @@ public class Interface extends javax.swing.JFrame {
     private String path = "";
     private String path_saida = "";
     private String textoFinal ="";
+    private String atributos = "";
     Arquivo arq = new Arquivo();
+    Algoritmo alg = new Algoritmo();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,8 +57,10 @@ public class Interface extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cxN = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        entradaTx = new javax.swing.JTextField();
         bClassificar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -104,13 +108,22 @@ public class Interface extends javax.swing.JFrame {
 
         jLabel6.setText("Insiria um novo item a ser classificado:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        entradaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                entradaTxActionPerformed(evt);
             }
         });
 
         bClassificar.setText("Classificar item");
+        bClassificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bClassificarActionPerformed(evt);
+            }
+        });
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setText("Iportante: Insira os dados na mesma ordem em que os atributos estão dispostos na base de dados, separe cada atributo por virgula.\nExemplos de entrada: -,5.5,7.6 |  (branco), 4.6 , 6.8 - note que o campo a ser classificado pode ficar em branco ou qualquer coisa");
+        jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,36 +142,38 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(bExecutar)
                 .addGap(85, 85, 85))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cxAt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cxClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cxAt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                            .addGap(18, 18, 18)
-                            .addComponent(cxN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(entradaTx, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bClassificar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cxAt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cxClasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cxAt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(cxN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +208,9 @@ public class Interface extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(bClassificar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79))
+                    .addComponent(entradaTx, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Arquivo");
@@ -235,10 +251,7 @@ public class Interface extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -323,7 +336,7 @@ public class Interface extends javax.swing.JFrame {
     private void bExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExecutarActionPerformed
         LinkedList<String> linha =  new LinkedList<>();
         linha = arq.getLinhas(); //pega as linhas do arquivo lid
-        Algoritmo alg = new Algoritmo();
+        
         alg.lerLinhas(linha);
         textoFinal = " "; 
         
@@ -331,16 +344,36 @@ public class Interface extends javax.swing.JFrame {
         cxAt2.removeAllItems();
         cxClasse.removeAllItems();
         cxAt2.addItem("Nulo");
-        System.out.println("Nome dos atributos na interface");
+           System.out.println("Nome dos atributos na interface");
         for(String j:alg.atributos){
-            textoFinal= textoFinal+j+" - ";
+            this.atributos = this.atributos+j+" - ";
             cxClasse.addItem(j);
             cxAt1.addItem(j);
             cxAt2.addItem(j);
             System.out.println(j);
         }
-        textoFinal = textoFinal+"\n";
+       
+        this.atualizarPainel();
         
+        
+        
+        
+        /*
+        String text="";
+        for (String linha1 : linha) {
+            if(linha1!=null){// a ultima posição na lista é null 
+                text= text+linha1+"\n";
+            }    
+        }
+        */
+        
+    }//GEN-LAST:event_bExecutarActionPerformed
+    
+    public void atualizarPainel(){
+        textoFinal = "";
+        
+      
+        textoFinal = this.atributos+"\n";
         System.out.println("************************************************************************");
         System.out.println("****************** Valores dos atributos armazenados na lista *********************");
         for(int k=0; k<alg.dadosLinha.size(); k++){
@@ -359,31 +392,75 @@ public class Interface extends javax.swing.JFrame {
         }
         
         this.painelEntrada.setText(textoFinal);
-        
-        
-        
-        /*
-        String text="";
-        for (String linha1 : linha) {
-            if(linha1!=null){// a ultima posição na lista é null 
-                text= text+linha1+"\n";
-            }    
-        }
-        */
-        
-    }//GEN-LAST:event_bExecutarActionPerformed
-
+    }
+    
+    
     private void cxAt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxAt1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cxAt1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void entradaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaTxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_entradaTxActionPerformed
 
     private void cxNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cxNActionPerformed
+
+    private void bClassificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClassificarActionPerformed
+        String  n = cxN.getSelectedItem().toString();
+        String classePrincipal = cxClasse.getSelectedItem().toString();
+        String ele1 =  cxAt1.getSelectedItem().toString();
+        String ele2 = cxAt2.getSelectedItem().toString();
+        
+        //teste
+        System.out.println(n+classePrincipal+ele1+ele2);
+        
+        if(!classePrincipal.equals(ele1) && !classePrincipal.equals(ele2)){
+            aviso.setText(" ");
+            if(ele1.equals(ele2)){
+                aviso.setText("As caracteristicas selecionadas são as mesmas, selecione outra");
+            }else{
+                aviso.setText(" ");
+                alg.salvarIdAtributos(classePrincipal, ele1, ele2);//pegar os id de cada atributo
+                //teste
+                System.out.println(alg.idAtributoClasse);
+                System.out.println(alg.idAtributoRelevante1);
+                System.out.println(alg.idAtributoRelevante2);
+                
+                LinkedList<String> linhaEntrada =  new LinkedList<>();
+                String temp[];
+                temp=entradaTx.getText().split(",");
+                 for(String p:temp){
+                        linhaEntrada.add(p);
+                        System.out.println(p);
+                 }
+                
+                 String classe = alg.start(linhaEntrada, 1);
+                 aviso.setText("Item classificado como: "+classe);
+                 
+                 Linha adicionar =  new Linha();
+                 
+                 for(int j=0; j<temp.length;j++){
+                     if(j==alg.idAtributoClasse){
+                         adicionar.add(classe);
+                     }else{
+                         adicionar.add(temp[j]);
+                     }
+                        
+                 }
+                 alg.dadosLinha.add(adicionar);
+                 this.atualizarPainel();
+                //roda algoritmo
+                //double teste = alg.calcularDistancia(5, 5, 10, 10);
+                //System.out.println(teste);
+                
+            }
+        }else{
+            aviso.setText("Certifique-se que o atributo a ser classificado é diferente das caracteristicas selecionadas.");
+        }
+                
+    }//GEN-LAST:event_bClassificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,6 +506,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JComboBox cxAt2;
     private javax.swing.JComboBox cxClasse;
     private javax.swing.JComboBox cxN;
+    private javax.swing.JTextField entradaTx;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -439,8 +517,9 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenuItem menuSalvar;
     private javax.swing.JTextPane painelEntrada;
     // End of variables declaration//GEN-END:variables
