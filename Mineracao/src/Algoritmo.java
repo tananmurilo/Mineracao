@@ -21,6 +21,8 @@ public class Algoritmo {
     int numTrasacoes;
     LinkedList<Linha> dadosLinha;
     public String textoFinal="";
+    
+    
    
     
     /**
@@ -59,7 +61,7 @@ public class Algoritmo {
                     
                     for(String p:temp){
                         String d = Integer.toString(cont);
-                        c.add("C:"+d+":"+p);//identificar a coluna q pertence esse dado.
+                        c.add(p);//identificar a coluna q pertence esse dado.
                         cont++;
                     }
                     dadosLinha.add(c);
@@ -69,7 +71,7 @@ public class Algoritmo {
         }
         
         //teste
-        /*
+        
         for(String j:atributos){
             System.out.println(j);
         }
@@ -80,12 +82,12 @@ public class Algoritmo {
             
             System.out.println("Linha: "+k);
             System.out.println(" qnt de elementos na linha"+dadosLinha.get(k).size() );
-            for(int z=0; z<11; z++){
+            for(int z=0; z<qntAtributos; z++){
                 System.out.print("Pos: "+z+" Valor: "+dadosLinha.get(k).get(z)+" ");
                 
             }
         }
-      */
+      
     }
     
     

@@ -56,14 +56,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="693" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="608" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,35 +80,103 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="555" max="32767" attributes="0"/>
-                          <Component id="bExecutar" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="aviso" pref="680" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="aviso" alignment="0" max="32767" attributes="0"/>
                       <Component id="Status_arquivo" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="bExecutar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="cxAt2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cxClasse" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cxAt1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cxN" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="681" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jTextField1" min="-2" pref="505" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="bClassificar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="Status_arquivo" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="bExecutar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="aviso" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="293" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cxClasse" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="cxN" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="459" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cxAt1" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="cxAt2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="bClassificar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,13 +205,100 @@
         </Component>
         <Component class="javax.swing.JButton" name="bExecutar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Executar algoritmo"/>
+            <Property name="text" type="java.lang.String" value="Exibir base de treino"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bExecutarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="aviso">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cxClasse">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selecione o atributo a ser classificado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selecione a caracteristica relevante 1 :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selecione a caracteristica relevante 2 :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cxAt1">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cxAt1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cxAt2">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Valor do N:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cxN">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="1"/>
+                <StringItem index="1" value="3"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cxNActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insiria um novo item a ser classificado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bClassificar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Classificar item"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
