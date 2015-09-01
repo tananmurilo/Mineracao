@@ -61,6 +61,8 @@ public class Algoritmo {
                     atributos.add(temp[1]);
                 }else if(linha1.startsWith("@data")){
                     System.out.println("Data: "+linha1);
+                }else if(linha1.startsWith("%")){
+                    //comentario faz nada
                 }else if(!linha1.isEmpty()){
                     //System.out.println("dado: "+linha1);
                     temp=linha1.split(",");
@@ -171,13 +173,27 @@ public class Algoritmo {
         }
         if(n==1){
             return dadosLinha.get(vetor.get(0).getId()).get(idAtributoClasse); //retorna a classe que pertence ao elemento mais proximo
+        }else if(n==3){
+            //pegar os pontos mais proximos e ver qual o atributo que tem mais
+            String um = dadosLinha.get(vetor.get(0).getId()).get(idAtributoClasse);
+            String dois = dadosLinha.get(vetor.get(1).getId()).get(idAtributoClasse);
+            String tres = dadosLinha.get(vetor.get(2).getId()).get(idAtributoClasse);
+            
+            if(um.equals(dois) || um.equals(tres)){
+                return um;
+            }else if(dois.equals(tres)){
+                return dois;
+            }else{//caso todos atributos seja diferente retona o mais proximo
+                return um;
+            }
+             
         }else{
-             return "Indefinido";
+            return "Indefinido";
         }
         
        
     }
-    
+    //calcular distanci
     public double calcularDistancia(double x1, double y1, double x2, double y2){
         double xres = x1-x2;
         double yres = y1-y2;
