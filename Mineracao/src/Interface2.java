@@ -85,7 +85,6 @@ public class Interface2 extends javax.swing.JFrame {
             }
         });
 
-        nomeArquivo.setText("dsdsdds");
         nomeArquivo.setToolTipText("");
 
         painelEntrada.setEditable(false);
