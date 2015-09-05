@@ -25,7 +25,7 @@ public class Main {
         System.out.println("teste");
        
         
-        Interface a = new Interface();
+        Interface2 a = new Interface2();
         a.setVisible(true);
         Arquivo arq = new Arquivo();
         

@@ -51,15 +51,15 @@ public class Algoritmo {
             String temp[];
             Linha c = new Linha();
             if(linha1!=null){// a ultima posição na lista é null 
-                if(linha1.startsWith("@relation")){
+                if(linha1.startsWith("@relation")||linha1.startsWith("@RELATION")){
                     System.out.println("Nome da relação: "+linha1);
-                }else if(linha1.startsWith("@attribute")){
+                }else if(linha1.startsWith("@attribute")||linha1.startsWith("@ATTRIBUTE")){
                     System.out.println("Linha atributo: "+linha1);
                     temp=linha1.split(" ");
                     qntAtributos++;
-                    System.out.println("Nome do atributo: "+temp[1]+" Valor: "+temp[2]);
+                    System.out.println("Nome do atributo: "+temp[1]);
                     atributos.add(temp[1]);
-                }else if(linha1.startsWith("@data")){
+                }else if(linha1.startsWith("@data")||linha1.startsWith("@DATA")){
                     System.out.println("Data: "+linha1);
                 }else if(linha1.startsWith("%")){
                     //comentario faz nada
@@ -98,22 +98,16 @@ public class Algoritmo {
         }
       
     }
-    
-    public void salvarIdAtributos(String principal, String id1, String id2){
+    //salvar o id da classe a ser classificada
+    public void salvarIdAtributos(String principal){
         
          for(int i=0; i<atributos.size(); i++){
             if(atributos.get(i).equals(principal)){
                 this.idAtributoClasse= i ;
-            }else if(atributos.get(i).equals(id1)){
-                this.idAtributoRelevante1=i;
-            }else if(atributos.get(i).equals(id2)){
-                this.idAtributoRelevante2=i;
             }
          }
         
-         if(id2.equals("Nulo")){
-             this.idAtributoRelevante2= -1;
-         }
+         
             
     }
     
@@ -123,8 +117,25 @@ public class Algoritmo {
         
         
         for(int i=0; i<dadosLinha.size(); i++){
-           // Double valorDouble = Double.parseDouble(valor); 
-           
+           // Double valorDouble = Double.parseDouble(valor);
+             LinkedList<String> p1 =  new LinkedList<>();
+             LinkedList<String> p2 =  new LinkedList<>();
+             
+             //colocar os dados da base a ser calculado  sem uma lista
+             for(int j=0; j<dadosLinha.get(i).size();j++){
+                 if(j!=idAtributoClasse){
+                     p1.add(dadosLinha.get(i).get(j));
+                 }
+             }
+              //colocar os dados de entrada a ser calculado  sem uma lista
+             for(int j=0; j<entrada.size();j++){
+                 if(j!=idAtributoClasse){
+                     p2.add(entrada.get(j));
+                 }
+             }
+             
+             
+           /*
             double x1 =Double.parseDouble(entrada.get(idAtributoRelevante1)); 
             double x2 =Double.parseDouble(this.dadosLinha.get(i).get(idAtributoRelevante1));
             double y1 = 0;
@@ -138,12 +149,18 @@ public class Algoritmo {
                 y2 =Double.parseDouble(this.dadosLinha.get(i).get(idAtributoRelevante2)); 
             }
             double resDist = calcularDistancia(x1, y1, x2, y2);
+            */
             
             //adicionar informações das distancias de cada item na lista
+            double resDist = calcularDistancia(p1,p2);
+
             VetorDistancia v = new VetorDistancia(); 
             v.setId(i);
             v.setDist(resDist);
-            vetor.add(v); 
+            vetor.add(v); //vetor com as distancias
+            
+            p1.clear();
+            p2.clear();
             
         }
         
@@ -171,22 +188,50 @@ public class Algoritmo {
             System.out.println("distancia "+vetor.get(k).getDist() );
           
         }
+         
+         //n
         if(n==1){
             return dadosLinha.get(vetor.get(0).getId()).get(idAtributoClasse); //retorna a classe que pertence ao elemento mais proximo
-        }else if(n==3){
-            //pegar os pontos mais proximos e ver qual o atributo que tem mais
-            String um = dadosLinha.get(vetor.get(0).getId()).get(idAtributoClasse);
-            String dois = dadosLinha.get(vetor.get(1).getId()).get(idAtributoClasse);
-            String tres = dadosLinha.get(vetor.get(2).getId()).get(idAtributoClasse);
-            
-            if(um.equals(dois) || um.equals(tres)){
-                return um;
-            }else if(dois.equals(tres)){
-                return dois;
-            }else{//caso todos atributos seja diferente retona o mais proximo
-                return um;
-            }
+        }else if(n>1){
              
+           
+            
+            if(n>vetor.size()){
+                n=vetor.size();//caso n seja maior do que a qutidade de elementos ele é setado com o valor maximo de elementos
+            }
+                String atributoMaior="";
+                int contador = 0;
+                for(int i=0; i<n; i++){
+                    if(i==0){
+                       atributoMaior =  dadosLinha.get(vetor.get(i).getId()).get(idAtributoClasse);
+                       for(int j=0; j<n; j++){//contar quantidade de atributos
+                           if(atributoMaior.equals(dadosLinha.get(vetor.get(j).getId()).get(idAtributoClasse))){
+                           contador++;
+                       }
+                       }
+                       
+                    }else{
+                        String atual = dadosLinha.get(vetor.get(i).getId()).get(idAtributoClasse);
+                        int contAtual = 0;
+                        if(!atual.equals(atributoMaior)){//se for diferente do maior
+                           for(int j=0; j<n; j++){//contar quantidade de atributos
+                                if(atual.equals(dadosLinha.get(vetor.get(j).getId()).get(idAtributoClasse))){
+                                    contAtual++;
+                                } 
+                           }
+                           if(contAtual>contador){
+                               atributoMaior = atual;
+                               contador= contAtual;
+                           }
+                        
+                       }
+                    }
+                  
+                }
+                
+            
+            
+           return atributoMaior;  
         }else{
             return "Indefinido";
         }
@@ -194,11 +239,26 @@ public class Algoritmo {
        
     }
     //calcular distanci
-    public double calcularDistancia(double x1, double y1, double x2, double y2){
+    public double calcularDistancia(LinkedList<String> p1, LinkedList<String> p2){
+        
+        double valores=0;
+        
+         //converter valores para doble e fazer os calculos para cada elemento
+             for(int i=0; i<p1.size();i++){
+                double pt1 =Double.parseDouble(p1.get(i));  
+                double pt2 =Double.parseDouble(p2.get(i)); 
+                double ptRes = pt1-pt2;
+                valores = valores + (Math.pow(ptRes, 2));// somatorio(p1i - p2i)^2
+             }
+             
+             return Math.sqrt(valores);
+             
+        /*
         double xres = x1-x2;
         double yres = y1-y2;
         
-        return Math.sqrt(((Math.pow(xres, 2))+(Math.pow(yres, 2))));     
+        return Math.sqrt(((Math.pow(xres, 2))+(Math.pow(yres, 2))));  
+       */
     }
     
 }

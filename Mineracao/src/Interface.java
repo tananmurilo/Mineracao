@@ -422,11 +422,10 @@ public class Interface extends javax.swing.JFrame {
                 aviso.setText("As caracteristicas selecionadas são as mesmas, selecione outra");
             }else{
                 aviso.setText(" ");
-                alg.salvarIdAtributos(classePrincipal, ele1, ele2);//pegar os id de cada atributo
+                alg.salvarIdAtributos(classePrincipal);//pegar os id de cada atributo
                 //teste
                 System.out.println(alg.idAtributoClasse);
-                System.out.println(alg.idAtributoRelevante1);
-                System.out.println(alg.idAtributoRelevante2);
+                
                 
                 LinkedList<String> linhaEntrada =  new LinkedList<>();
                 String temp[];

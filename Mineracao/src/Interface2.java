@@ -45,18 +45,13 @@ public class Interface2 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         selectAtributo = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        selectCarac1 = new javax.swing.JComboBox();
-        selectCarac2 = new javax.swing.JComboBox();
-        entrada1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        entrada2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        selectN = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         painelResultado = new javax.swing.JTextPane();
+        cxSelecN = new javax.swing.JSpinner();
+        campoEntrada = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        labolOrdem = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         salvar = new javax.swing.JButton();
@@ -138,62 +133,40 @@ public class Interface2 extends javax.swing.JFrame {
 
         selectAtributo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1" }));
 
-        jLabel2.setText("Característica relevante 1:");
-        jLabel2.setToolTipText("");
-
-        jLabel3.setText("Característica relevante 2:");
-        jLabel3.setToolTipText("");
-
-        selectCarac1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 2" }));
-
-        selectCarac2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 3" }));
-
-        jLabel4.setText("Característica 1 (3 ou 3.5):");
-
-        jLabel5.setText("Característica 2 (3 ou 3.5):");
-
         jLabel6.setText("Valor de N:");
 
-        selectN.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "3" }));
-
         jScrollPane1.setViewportView(painelResultado);
+
+        cxSelecN.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        jLabel2.setText("Insira os dados na mesma ordem da base de dados separados por virgula:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectCarac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectCarac2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(entrada2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(49, 49, 49))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                    .addComponent(labolOrdem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cxSelecN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(campoEntrada)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addGap(50, 50, 50))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,30 +175,20 @@ public class Interface2 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(selectAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(entrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(selectCarac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(entrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(selectCarac2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(selectN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(cxSelecN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labolOrdem, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
-
-        entrada1.getAccessibleContext().setAccessibleDescription("");
-        jLabel4.getAccessibleContext().setAccessibleDescription("");
-        jLabel5.getAccessibleContext().setAccessibleDescription("");
-        entrada2.getAccessibleContext().setAccessibleDescription("");
 
         jTabbedPane1.addTab("Classificar", jPanel2);
 
@@ -337,15 +300,21 @@ public class Interface2 extends javax.swing.JFrame {
         textoFinal = " "; 
         
         selectAtributo.removeAllItems();
-        selectCarac1.removeAllItems();
-        selectCarac2.removeAllItems();
-        selectCarac2.addItem("Nulo");;
+         String ordem="Ordem da base: ";
+                for(String g:alg.atributos){
+                    ordem = ordem+g+",";
+                }
+          if (ordem.length() > 0) {  
+                ordem = ordem.substring (0, ordem.length() - 1);  
+            } 
+          labolOrdem.setText(ordem);
+       
            System.out.println("Nome dos atributos na interface");
+           this.atributos="";
         for(String j:alg.atributos){
             this.atributos = this.atributos+j+" - ";
             selectAtributo.addItem(j);
-            selectCarac1.addItem(j);
-            selectCarac2.addItem(j);
+            
             System.out.println(j);
         }
        
@@ -384,54 +353,42 @@ public class Interface2 extends javax.swing.JFrame {
     private void classificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classificarActionPerformed
 
         String classePrincipal = selectAtributo.getSelectedItem().toString();
-        String ele1 =  selectCarac1.getSelectedItem().toString();
-        String ele2 = selectCarac2.getSelectedItem().toString();
-        String  n = selectN.getSelectedItem().toString();
         
+        String  n = cxSelecN.getValue().toString();
+        System.out.println("N: "+n);
         //teste
-        System.out.println(n+classePrincipal+ele1+ele2);
+        System.out.println(n+classePrincipal);
 
-        if(!classePrincipal.equals(ele1) && !classePrincipal.equals(ele2)){
             painelResultado.setText(" ");
-            if(ele1.equals(ele2)){
-                painelResultado.setText("As caracteristicas selecionadas são as mesmas, selecione outra");
-            }else{
+            
                 painelResultado.setText(" ");
-                alg.salvarIdAtributos(classePrincipal, ele1, ele2);//pegar os id de cada atributo
+                alg.salvarIdAtributos(classePrincipal);//pegar os id de cada atributo
                 //teste
                 System.out.println(alg.idAtributoClasse);
-                System.out.println(alg.idAtributoRelevante1);
-                System.out.println(alg.idAtributoRelevante2);
-
-                LinkedList<String> dadosEntrada =  new LinkedList<>();
-                dadosEntrada.add("");
-                dadosEntrada.add(entrada1.getText());
-                dadosEntrada.add(entrada2.getText());
-//                String temp[];
-//                temp=entradaTx.getText().split(",");
-//                for(String p:temp){
-//                    dadosEntrada.add(p);
-//                    System.out.println(p);
-//                }
-
-//                System.out.println("AQUI*******************************************************************");
-//                System.out.println(dadosEntrada);
-//                System.out.println("AQUI*******************************************************************");
+               
                 
-                String classe = alg.start(dadosEntrada, 1);
-//                painelResultado.setText("Novo item classificado como: "+classe);
+                LinkedList<String> linhaEntrada =  new LinkedList<>();
+                String temp[];
+                temp=campoEntrada.getText().split(",");
+                 for(String p:temp){
+                        linhaEntrada.add(p);
+                        System.out.println(p);
+                 }
+                
+                String classe = alg.start(linhaEntrada, Integer.parseInt(n));
+                
 
                 Linha adicionar =  new Linha();
-                adicionar.add(classe);
-                adicionar.add(entrada1.getText());
-                adicionar.add(entrada2.getText());
-//                for(int j=0; j<temp.length;j++){
-//                    if(j==alg.idAtributoClasse){
-//                        adicionar.add(classe);
-//                    }else{
-//                        adicionar.add(temp[j]);
-//                    }
-//                }
+                //adicionar.add(classe);
+                //adicionar.add(entrada1.getText());
+                
+                for(int j=0; j<temp.length;j++){
+                    if(j==alg.idAtributoClasse){
+                        adicionar.add(classe);
+                    }else{
+                       adicionar.add(temp[j]);
+                   }
+                }
                 
                 alg.dadosLinha.add(adicionar);
                 this.atualizaPainelResultado(classe);
@@ -440,10 +397,8 @@ public class Interface2 extends javax.swing.JFrame {
                 //double teste = alg.calcularDistancia(5, 5, 10, 10);
                 //System.out.println(teste);
 
-            }
-        }else{
-            painelResultado.setText("Certifique-se que o atributo a ser classificado é diferente das caracteristicas selecionadas.");
-        }
+            
+        
     }//GEN-LAST:event_classificarActionPerformed
 
     public void getDadosEntrada(){
@@ -518,15 +473,12 @@ public class Interface2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abrir;
-    private javax.swing.JTextField entrada1;
-    private javax.swing.JTextField entrada2;
+    private javax.swing.JTextField campoEntrada;
+    private javax.swing.JSpinner cxSelecN;
     private javax.swing.JButton exibirDados;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -536,14 +488,12 @@ public class Interface2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel labolOrdem;
     private javax.swing.JLabel nomeArquivo;
     private javax.swing.JTextPane painelEntrada;
     private javax.swing.JTextPane painelFinal;
     private javax.swing.JTextPane painelResultado;
     private javax.swing.JButton salvar;
     private javax.swing.JComboBox selectAtributo;
-    private javax.swing.JComboBox selectCarac1;
-    private javax.swing.JComboBox selectCarac2;
-    private javax.swing.JComboBox selectN;
     // End of variables declaration//GEN-END:variables
 }
